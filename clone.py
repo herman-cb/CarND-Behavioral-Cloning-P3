@@ -22,27 +22,6 @@ for line in lines:
 X_train = np.asarray(images)
 y_train = np.asarray(measurements)
 
-a = -0.5
-b = 0.5
-X_min = np.min(X_train)
-X_max = np.max(X_train)
-print("X_max = {}, X_min = {}".format(X_max, X_min))
-import sys
-print("Bytes used by X_train = {}".format(sys.getsizeof(X_train)))
-X_train = X_train - X_min
-X_train = X_train * (b-a)
-#X_train = X_train.astype(np.float32)
-print("Bytes used by X_train = {}".format(sys.getsizeof(X_train)))
-print("Shape of X_train = {}".format(X_train.shape))
-X_train_array = X_train.shape[0]*[None]
-for i in np.arange(X_train.shape[0]):
-    print("Processing image number {}".format(i))
-    X_train_array[i] = X_train[i]/X_max-X_min
-X_train = np.stack(X_train_array)
-print("Shape of X_train = {}".format(X_train.shape))
-X_train = X_train + a
-#X_train = a + (b - a)*(X_train - X_min) / (X_max - X_min)
-
 print("Shape of X_train = {}".format(X_train.shape))
 print("Shape of y_train = {}".format(y_train.shape))
 
